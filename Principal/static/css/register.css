@@ -1,0 +1,21 @@
+.register_user{
+    height: auto;
+    margin: auto;
+    display: flex;
+    z-index: 6;
+   justify-content: center;
+   padding: 2rem;
+}
+
+.boxre h2{
+    margin: 1rem;
+    text-align: center;
+}
+
+.errorlist {
+    color: #f72020;
+    justify-content: left;
+    text-decoration: none;
+    margin-bottom: -4rem;
+    font-size: 13px;
+}

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR SISTEMAS</title>
+    <link href="{% static 'css/index.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/nav2.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/register.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/profile.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/productscard.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/carrito1.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/recibo.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/details_template.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/masvisto.css' %}?v=1.0" rel="stylesheet">
+    <link href="{% static 'css/base1.css' %}?v=1.0" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="wrapper">
+              <div class="logo"><a href="{% url 'index' %}"><box-icon name='chip' color='#ffffff' style="max-width:95px" ></box-icon>JR SISTEMAS</a></div>
+              <ul class="nav-links">
+                <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'equipos' %}">Equipos</a></li>
+                <li><a href="{% url 'audioyvideo' %}">Audio y vídeo</a></li>
+                <li><a href="{% url 'componentes' %}">Componentes</a></li>
+                <li><a href="{% url 'redes' %}">Redes</a></li>
+                <li>
+                    <a href="#" class="desktop-item"><box-icon name='user' color='#ffffff'></box-icon></box-icon></a>
+                    <input type="checkbox" id="showDrop">
+                    <label for="showDrop" class="mobile-item"></label>
+                    {% if user.is_authenticated %}
+                    <ul class="drop-menu">
+                          <li>{{ user.name|capfirst }} {{ user.last_name|capfirst }}</li>
+                          <li><a href="{% url 'carrito' %}">Mi carrito</a></li>
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.is_staff %}
+                            <li><a href="{% url 'panel' %}">Admin</a></li>
+                          <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+                            {% endif %}
+                          {% else %}
+                          <li><a href="{% url 'login' %}">Login</a></li>
+                      </ul>
+                    {% endif %}
+                </li>
+              </ul>
+              <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+            </div>
+          </nav>
+    </header>
+    {% block content %} 
+    {% endblock %}
+
+    <footer>
+      <div class="footer">
+        <div class="row1">
+        </div>
+        <div class="row">
+          <h3>JR SISTEMAS</h3>
+          <p>Siempre para prestar el mejor servicio</p>
+          <hr class="linee">
+        </div>
+        <div class="row1">
+          Informática © 2024 Pollo
+        </div>
+      </div>
+    </footer>
+    
+  
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/temporizador.js' %}"></script>
+    <script src="{% static 'js/selectornulo_admin.js' %}"></script>
+    <script src="{% static 'js/limpiadordecampos.js' %}"></script>
+    <script src="{% static 'js/profile.js' %}"></script>
+    <script src="{% static 'js/slicer.js' %}?v=1.0"></script>
+</body>
+</html>
+
+  

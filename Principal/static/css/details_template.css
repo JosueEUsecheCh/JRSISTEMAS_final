@@ -1,0 +1,178 @@
+.product_template{
+    display: flex;
+    width: 100%;
+    padding: 2rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.product_img{
+    flex-basis: 50%;
+    padding: 1rem;
+}
+
+.product_img img{
+    max-width: 300px;
+}
+
+.product_details{
+    flex-basis: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+
+.infos h2{
+    font-size: 1rem;
+    text-decoration: wavy;
+}
+
+.section-card .card .infos .btn {
+    padding: 0.8rem 1.6rem;
+    border-radius: 3rem;
+    border: 1px solid #f2f2f2;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    transition: all 0.2s ease-in;
+}
+
+.section-card .card .infos .btn:hover {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+/*CARD DE DETALLES*/
+.content-details-card{
+    height: 80vh;
+}
+
+.content-details-cards{
+    height: 35vh;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;          
+}
+
+/* Estilos de la tarjeta */
+.card-1 {
+    width: 100%;
+    max-width: 1150px;  
+    background: white;
+    padding: 10px;      
+    margin: 10px;       
+    margin-top: -10rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s;
+    z-index: 100;
+    box-sizing: border-box; 
+}
+
+.card-1:hover {
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    
+}
+    
+.photo1 {
+    padding: 1rem;
+    width: 45%;
+    text-align: center;
+    float: left;
+}
+
+.photo1 img { 
+   max-height: 460px; 
+}
+      
+.description1 {
+    padding: 30px;
+    float: left;
+    width: 55%;
+    border-left: 2px solid #efefef;
+}
+       
+.description1 h1 {
+    color: #dd6e42;
+    font-weight: 300;
+    padding-top: 15px;
+    margin: 0;
+    font-size: 30px;
+    font-weight: 300;
+}
+     
+.description1 h2 {
+    color: #515151;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+      
+.description1 h4 { 
+    margin: 0;
+    color: #727272;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px
+}
+
+.description1 p { 
+    font-size: 12px; 
+    line-height: 20px;
+    color: #727272;
+    padding: 20px 0;
+    margin: 0;
+}
+      
+.description1 button {
+    outline: 0;
+    border: 0;
+    background: #c0d6df;
+    border: 1px solid #c0d6df;
+    padding: 10px;
+    margin-bottom: 30px;
+    color:  #4f6d7a;
+    text-transform: uppercase;
+    width: 190px;
+    font-family: inherit;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin-left: 8rem;
+}
+
+.description1 input{
+    max-width: 10rem;
+}
+.description1 button:hover{
+    background: darken(white, 2%);
+    border: 1px solid#dd6e42;
+    color:#dd6e42; 
+    cursor: pointer;
+}
+
+.description1 input{
+    width:50%;
+    padding:10px;
+    box-sizing:border-box;
+    background:none;
+    outline:none;
+    resize:none;
+    border:0;
+    transition:all .3s;
+    border-bottom:2px solid #bebed2;
+}
+
+.description1 input:focus{
+    border-bottom:2px solid #50506d;
+}
+
+.description1 button, .description1 input{
+    margin-top: 8rem;
+}

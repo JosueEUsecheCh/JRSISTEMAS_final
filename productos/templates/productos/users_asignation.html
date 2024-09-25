@@ -1,0 +1,46 @@
+{% extends "bases/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="asignations-users">
+    <h1> Asignación de usuarios </h1>
+    <table class="fl-table-usuarios">
+        <thead>
+            <tr>
+                <th>Correo</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        {% for  user in users %}
+        <tbody>
+            <td> {{ user.email }} </td>
+            <td> {{ user.name | capfirst}}  </td>
+            <td> {{ user.phone_number }}  </td>
+            {% if user.is_staff %}
+            <td> 
+                <div class="box1">
+                    <a class="button" href="{% url 'user_designation' user.id %}">
+                    <box-icon type='solid' name='user-x'></box-icon>
+                    </a>
+                </div>
+            </td>
+            {% else %}
+            <td> 
+                <div class="box1">
+                    <a class="button" href="{% url 'user_asignation' user.id %}">
+                        <box-icon name='user-check' type='solid' ></box-icon>
+                    </a> 
+                </div>
+            </td>
+            {% endif %}
+        </tbody> 
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

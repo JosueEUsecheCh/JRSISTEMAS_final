@@ -1,0 +1,7 @@
+.cardbody{
+    width: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #232b3a46;
+}

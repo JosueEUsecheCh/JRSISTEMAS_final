@@ -1,0 +1,62 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+
+<div class="panel-tabla" style="text-align: center; padding:1rem;">
+    <h2>Listado de Recibos</h2>
+    
+    <!-- Mostrar mensajes -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="asignations-users">
+        {% if recibos %}
+        <table class="fl-table-usuarios">
+            <thead>
+            <tr>
+                <th>Carrito</th>
+                <th>Usuario</th>
+                <th>Código del Recibo</th>
+                <th>Fecha de Generación</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for recibo in recibos %}
+                <tr>
+                    <td>{{ recibo.carrito }}</td>
+                    <td>{{ recibo.usuario }}</td>
+                    <td>{{ recibo.recibo_codigo }}</td>
+                    <td>{{ recibo.fecha_generacion }}</td>
+                    <td>
+                        <!-- Botón Confirmar -->
+                        <a href="{% url 'confirmar_compra' recibo_codigo=recibo.recibo_codigo %}">
+                            <button>Confirmar</button>
+                        </a>
+
+                        <!-- Botón Cancelar -->
+                        <a href="{% url 'cancelar_compra' recibo_codigo=recibo.recibo_codigo %}">
+                            <button>Cancelar</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No hay recibos disponibles.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+<br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

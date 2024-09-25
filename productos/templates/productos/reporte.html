@@ -1,0 +1,135 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte JRSISTEMAS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ad9090;
+            font-size: 12px;
+        }
+        th {
+            background-color: #253047;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!--TITULO PRINCIPAL-->
+    <br>
+    <div class ="container registro" style="font-size:20px;"> <h1>Reporte Productos</h1></div>
+    <!--TABLA DE DATOS--> 
+    <h2> Audio y video </h2>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            {% for product in productos_audioyvideo %}
+            <tbody>
+                <tr>
+                    <td>{{product.name | capfirst}}</td>
+                    <td>{{product.details}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.category}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <br> <br> 
+    <h2>Componentes</h2>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            {% for product in productos_componentes %}
+            <tbody>
+                <tr>
+                    <td>{{product.name | capfirst}}</td>
+                    <td>{{product.details}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.category}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <br><br>
+    <br> <br> 
+    <h2> Equipos</h2>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            {% for product in productos_equipo %}
+            <tbody>
+                <tr>
+                    <td>{{product.name | capfirst}}</td>
+                    <td>{{product.details}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.category}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    <h2> Redes</h2>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Detalles</th>
+                    <th scope="col">precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Categoria</th>
+                </tr>
+            </thead>
+            {% for product in productos_redes %}
+            <tbody>
+                <tr>
+                    <td>{{product.name | capfirst}}</td>
+                    <td>{{product.details}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.category}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

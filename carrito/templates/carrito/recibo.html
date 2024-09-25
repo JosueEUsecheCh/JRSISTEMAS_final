@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recibo de apartado</title>
+    {% load custom_filters %}
+    <style>
+        .recibo{
+            text-align: center;
+        }
+        .pollo-title h1{
+            font-size: 3rem;
+            margin: 0;
+        }
+        
+        .pollo-title h2 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        .pollo-products{
+            font-size: 1rem;
+        }
+
+        .total-productss{
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .total-products{
+            display: inline-flex;
+            text-decoration: solid;
+            font-size: 12px;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="recibo">
+    <div class="pollo-title">
+        <h1> Recibo de {{ carrito.usuario | capfirst }}</h1>
+        <h2> Ubicación: Santa Teresa </h2>
+        <h2> Teléfono: 0412-0999132 </h2>
+        <h2> Código del recibo: {{ recibo_code }} </h2>
+    </div>
+    <div><p> ************************************************************************************************************ </p></div>
+    <div class="pollo-products">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th> Nombre del producto</th>
+                    <th> Cantidad</th>
+                    <th> Precio unitario </th>
+                    <th> Subtotal </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.get_producto_name }}</td>
+                    <td> {{ item.cantidad }} </td>
+                    <td> {{ item.get_producto_price}} $ </td>
+                    <td> {{ item.get_producto_price|floatformat:2|mul:item.cantidad }} </td>
+                
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <div><p> ************************************************************************************************************ </p></div>
+        <div class="total-products">
+            <h1>  Total</h1>
+            <h1>{{ carrito.total }} $ <h1>
+        </div>
+    <div><p> ************************************************************************************************************ </p></div>
+    <div class="total-productss">
+        <h3>  El recibo tendrá 15 días hábiles para retirar el pedido <h3>
+        <h3>  ¡Gracias por su compra! <h3>
+    </div>
+</div>
+</body>
+</html>

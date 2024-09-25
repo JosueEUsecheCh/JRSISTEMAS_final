@@ -1,0 +1,411 @@
+/*----------------REGISTRO DE PRODUCTOS------------------------------*/
+.register_p{
+    z-index: 5;
+    width:500px;
+    height:50rem;
+    background:#e6e6e6;
+    border-radius:8px;
+    box-shadow:0 0 40px -10px #171d29;
+    margin:auto;
+    padding:20px 30px;
+    max-width:calc(100vw - 40px);
+    box-sizing:border-box;
+    position:relative;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.register_p button{
+    background-color: darken(white, 2%);
+    border: 1px solid#dd6e42;
+    color:#dd6e42; 
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 3px;
+    border-radius: 3px;
+}
+
+.register_p button:hover{
+    background-color:#dd6e42c2;
+    color: #ffffff;
+    border: transparent;
+    transition: 0.7s;
+}
+.register_p h2 {
+    margin:10px 0;
+    padding-bottom:10px;
+    width:180px;
+    color: #dd6e42;
+    border-bottom:3px solid #2c3849;
+}
+
+.register_p input, .category_product{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+    background:none;
+    outline:none;
+    resize:none;
+    border:0;
+    transition:all .3s;
+    border-bottom:2px solid #bebed2
+}
+
+.details_product{
+    width:100%;
+    padding:-5px;
+    box-sizing:border-box;
+    background:none;
+    outline:none;
+    resize:none;
+    border:0;
+    transition:all .3s;
+    border-bottom:2px solid #bebed2;
+    text-align: center;
+}
+
+.panel-tabla button{
+    float:right;
+    padding:8px 12px;
+    margin: 0.3rem;
+    font-family:'Montserrat',sans-serif;
+    border:2px solid #78788c;
+    background:0;
+    color:#5a5a6e;
+    cursor:pointer;
+    transition:all .3s;
+    z-index: 12;
+    border-radius: 2px;
+}
+
+.panel-tabla button:hover{
+    background:#78788c;
+    color:#fff
+}
+
+input:focus{
+    border-bottom:2px solid #50506d;
+}
+
+.name_product{
+    text-align: center;
+}
+
+.panel-tabla h1{
+    text-align: center;
+    padding: 1rem;
+}
+
+/*----Modal emergente de eliminación----*/
+
+.box {
+    width: 40%;
+    padding: 0.5rem;
+    border: 3px solid #fff;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.box1{
+    float: right 50%;
+    margin-top: 12px;
+}
+
+.box1 a:hover , .box a:hover{
+    background-color:  #dd6e4260;
+}
+
+.box{
+    float: left;
+}
+  
+.button {
+    font-size: 1em;
+    padding: 0.9rem 0.2rem 0.2rem;
+    color: #fff;
+    border: 2px transparent;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.button:hover {
+    background: #494949;
+    border: 2px transparent;
+}
+  
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #25384456;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay button{
+    margin: 3px;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+  
+.popup {
+    margin: 3rem auto;
+    padding: 1.3rem;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+  
+.popup h2 {
+    margin-top: 0;
+    color: #2a303f;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .content {
+    max-height: 60%;
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 80%;
+    }
+    .popup{
+      width: 80%;
+    }
+  }
+
+.category_product, .category_product1, .category_product2, .category_product3{
+    height: 3rem;
+    margin: 0.2rem;
+    max-width: 15rem;
+    text-align: center;
+    font-size: 15px;
+}
+
+.lista{
+    column-gap: 3;
+    column-count: 5;
+    column-width: auto;
+    margin-top: 1.8rem;
+}
+
+.lista button{
+    margin-right: 60%;
+    margin-top: 3rem;
+}
+
+/* TABLA DE PRODUCTOS*/
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    min-width: 300px;
+}
+
+.content p{
+    margin-top: 1rem;
+}
+
+.table-wrapper{
+    margin: 4rem 18rem 1rem 1rem;
+    align-items: center;
+    text-align: center;
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 130%;
+    max-width: 130%;
+    white-space: nowrap;
+    background-color: white;
+    box-shadow: 0px 35px 50px #53688f41;
+}
+
+
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background:  #253047;
+}
+
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #253047;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+.img-product img{
+    max-width: 100px;
+}
+
+/*TABLA DE USUARIOS Y ASIGNACIÓN DE ROL*/
+
+.asignations-users{
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.fl-table-usuarios {
+    text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 90%;
+    max-width: 90%;
+    white-space: nowrap;
+    background-color: white;
+    box-shadow: 0px 35px 50px #53688f6b;
+    margin-left: 2rem;
+}
+
+.fl-table-usuarios  td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table-usuarios  td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.fl-table-usuarios  thead th {
+    color: #ffffff;
+    background:  #253047;
+}
+
+
+.fl-table-usuarios  thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #253047;
+}
+
+.fl-table-usuarios  tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before{
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fl-table thead, .fl-table tbody, .fl-table thead th {
+        display: block;
+    }
+    .fl-table thead th:last-child{
+        border-bottom: none;
+    }
+    .fl-table thead {
+        float: left;
+    }
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fl-table td, .fl-table th {
+        padding: 20px .625em .625em .625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 120px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+        background: #F8F8F8;
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #E6E4E4;
+    }
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+
+/*OTRAS OPCIONES DEL SISTEMA*/
+
+.botones{
+    text-align: center;
+    font-size: 15px;
+}
+
+.botones h2{
+    font-size: 23px;
+}
+
+.botones button{
+    align-items: center;
+    justify-content: center;
+    padding:8px 12px;
+    margin: 0.3rem;
+    font-family:'Montserrat',sans-serif;
+    border:2px solid #78788c;
+    background:0;
+    color:#5a5a6e;
+    cursor:pointer;
+    transition:all .3s;
+    z-index: 12;
+    border-radius: 2px;
+}
+
+/*MENÚ DEL ADMIN */

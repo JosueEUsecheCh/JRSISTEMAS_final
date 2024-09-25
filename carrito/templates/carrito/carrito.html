@@ -1,0 +1,80 @@
+{% extends "bases/base.html" %}
+
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="car-tittle">
+    <span>
+        <h2> 
+            <box-icon name='cart' color='#dd6e42' ></box-icon>Carrito de {{ request.user | capfirst }} <box-icon name='chevron-right' color="#dd6e42"></box-icon></box-icon>
+        </h2>
+    </span>
+</div>
+
+<!-- Mostrar mensajes -->
+<div class="codigo-pollo">
+    {% if messages %}
+        <div class="messages" id="message-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<div class="colums-car">
+    <div class="productos-car">
+        <table class="table-car">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio unitario</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td><img src="{{ item.get_producto_image_url }}" alt="{{ item.get_producto_name }}"></td>
+                    <td>{{ item.get_producto_name | capfirst }} </td>
+                    <td> {{ item.cantidad }} </td>
+                    <td>{{ item.get_producto_price }}</td>
+                    <td> {{ item.get_producto_price|floatformat:2|mul:item.cantidad }}</td>
+                    <td> 
+                        {% if item.producto_audioyvideo %}
+                            <a href="{% url 'eliminar_del_carrito_audioyvideo' item.producto_audioyvideo.id %}"><button>Quitar</button></a>
+                        {% elif item.producto_componentes %}
+                            <a href="{% url 'eliminar_del_carrito_componentes' item.producto_componentes.id %}"><button>Quitar</button></a>
+                        {% elif item.producto_equipos %}
+                            <a href="{% url 'eliminar_del_carrito_equipos' item.producto_equipos.id %}"><button>Quitar</button></a>
+                        {% elif item.producto_redes %}
+                            <a href="{% url 'eliminar_del_carrito_redes' item.producto_redes.id %}"><button>Quitar</button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="total-car">
+        <div class="total">
+            <h3>Total: {{ carrito.total }}</h3>
+        </div>
+        <p>El recibo tendrá una vigencia de 15 días hábiles para confirmar su compra</p>
+        <div>
+            <form action="{% url 'recibo' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Confirmar Compra</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

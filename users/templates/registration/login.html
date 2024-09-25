@@ -1,0 +1,30 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+
+<div class="login">
+    <div class="login-screen">
+        <h2 class="app-title"> Login </h2>
+        <div class="login-form">
+            {% if messages %}
+            <div class="messages" id="message-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %} 
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+                <a class="login-link" href=" {% url 'password_reset' %} ">¿Olvidó su contraseña?</a>
+                <a class="login-link" href=" {% url 'user_register' %} ">¿No tiene una? créala</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

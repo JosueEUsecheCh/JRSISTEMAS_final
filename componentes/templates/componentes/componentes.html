@@ -1,0 +1,90 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="shell">
+  <aside class="sidebar">
+    <div id="leftside-navigation" class="nano">
+      <ul class="nano-content">
+        <h4>Filtro</h4>
+        
+        <!-- Enlace para mostrar todos los productos -->
+        <li class="sub-menu">
+          <a href="{% url 'componentes' %}">
+            <span>Todos los productos</span>
+          </a>
+        </li>
+        
+        <!-- Generar categorías dinámicamente -->
+        {% for categoria in categorias %}
+          <li class="sub-menu">
+            <!-- Enlace que filtra productos por categoría -->
+            <a href="{% url 'filtrar_por_categoria' categoria.id %}">
+              <span>{{ categoria.name }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+
+  <div class="container">
+    <div class="row">
+      <!-- Mostrar productos filtrados o todos los productos -->
+      {% for producto in page_obj %}
+      <div class="col-3" style="margin-left:3rem;  min-width:250px; min-height:62px;">
+        <div class="wsk-cp-product">
+          <div class="wsk-cp-img">
+            <a href="{% url 'details_c' producto.id %}"> 
+              <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+            </a>
+          </div>
+          <div class="wsk-cp-text">
+            <div class="category"><span>{{ producto.category.name | capfirst }}</span></div>
+            <div class="title-product"><h3>{{ producto.name | capfirst }}</h3></div>
+            <div class="card-footer">
+              <div class="wcf-left"><span class="price">{{ producto.price }}$</span></div>
+              <div class="wcf-right">
+                <a>
+                  <form action="{% url 'state_componentes' producto.id %}" method="GET">
+                    {% csrf_token %}
+                    <button class="btn btn-buy" {% if producto.quantity == 0 %}disabled 
+                      style="color:red; align-items: center; border: transparent;">
+                      Agotado
+                    </button>
+                    {% else %}
+                    <button class="btn btn-buy">
+                      Añadir al carrito
+                    </button>
+                    {% endif %}
+                  </form>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="empty">No hay productos disponibles en esta categoría.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; primero</a>
+      <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+    {% endif %}
+
+    <span class="current">
+      Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">último &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+{% endblock %}

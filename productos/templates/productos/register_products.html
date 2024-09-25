@@ -1,0 +1,18 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+
+<div class="register_p">
+    <h2> Registro </h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <br>
+    <button type="button" onclick="window.location.href='{% url 'panel' %}'">Cancelar</button>
+    <button type="submit">Registrar</button>
+    </form>
+    
+</div>
+<br>
+
+{% endblock  %}

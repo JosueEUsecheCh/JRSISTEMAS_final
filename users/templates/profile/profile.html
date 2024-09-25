@@ -1,0 +1,15 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+
+<div class="card_profile">
+    <div class="cardbody">
+        <img class="thumbnail">
+        <h2> {{ user.name|capfirst}} {{ user.last_name|capfirst }} </h2>
+        <hr>
+        <p> Teléfono: {{ user.phone_number }} </p>
+        <p> Correo electrónico: {{ user.email}} </p>
+        <p> Estado de servicio: </p>
+    </div>
+</div>
+{% endblock %}

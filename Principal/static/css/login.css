@@ -1,0 +1,140 @@
+/*---------LOGIN----------------*/
+
+.login {
+    margin: 1.25rem auto;
+    width: 18.75rem;
+    margin-top: 5rem;
+}
+.login-screen {
+    background-color:#203843;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+    
+.app-title {
+    text-align: center;
+    color:#dd6e42;
+}
+    
+.login-form {
+    text-align: center;
+    color: #ffffff;
+    height: auto;
+}
+
+.control-group {
+    margin-bottom: 0.625rem;
+}
+    
+.login-form input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 0.125rem solid transparent;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 200;
+    padding: 0.625rem 0;
+    width: 15.625rem;
+    transition: border .5s;
+}
+    
+.login-form input:focus {
+    border: 0.125rem solid #181e2c;
+    box-shadow: none;
+}
+
+.login-form input:hover{
+    transition: 0.2s;
+    background-color: #c0d6df;
+    color: #4f6d7a;
+    transition: 0.4s;
+}
+    
+.login-form button {
+    border: 0.125rem solid transparent;
+    background: #c0d6df; 
+    color: #4f6d7a; 
+    font-size: 1rem;
+    line-height: 1.5625rem;
+    padding: 0.625rem 0; 
+    text-decoration: none; 
+    text-shadow: none;
+    border-radius: 2rem;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 15.625rem;
+    margin: 1rem auto;
+    transition: 0.3s;
+}
+
+
+.button{
+    background-color: darken(white, 2%);
+    border: 1px solid#dd6e42;
+    color:#dd6e42; 
+    cursor: pointer; 
+}  
+
+.button:hover{
+    background-color: darken(white, 2%);
+    color: #ffffff;
+}
+
+.login-form button:hover{
+    background-color: #ffffff;
+    border: 1px solid#dd6e42;
+    color:#dd6e42; 
+    cursor: pointer;
+    transition: 0.5s;
+}
+    
+.login-link {
+    font-size: 0.75rem;
+    color: #deedff;
+    display: block;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.login-link:hover {
+    color:#fc8d61 !important; 
+    transition: 0.3s;
+}
+
+.texts{
+    margin: 5rem;
+    text-align: center;
+    color: #000000;
+    margin-top: 7rem;
+    margin-bottom: 7rem !important;
+}
+
+.texts button {
+    border: 0.125rem solid transparent;
+    background: #ffffff; 
+    color: #dd6e42;  
+    font-size: 1rem;
+    line-height: 1.5625rem;
+    padding: 0.625rem 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 2rem;
+    box-shadow: none;
+    transition: 0.25s;
+    width: 15.625rem;
+    text-align: center;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.texts button:hover{
+    background-color: darken(white, 2%);
+    border: 1px solid#dd6e42;
+    color:#dd6e42; 
+    cursor: pointer;
+}
+
+
+

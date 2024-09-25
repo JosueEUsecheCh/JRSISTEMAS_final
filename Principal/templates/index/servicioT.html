@@ -1,0 +1,80 @@
+{% extends "bases/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-3">
+    </div>
+        <div class="col-6">
+            <h2 class="formulariocontacto">Contáctanos</h2>
+            <hr>
+            <form action="" method="POST" class="was-validated">
+                {% csrf_token %}
+                <!-- MENSAJES-->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+    
+                 <div class="mb-3">
+                    <label for="name" class="form-label">Nombre y apellido</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="EJ: Lawrence Chacón" required>
+                    <div class="valid-feedback"></div>
+                 <div class="invalid-feedback">Introduzca su nombre y apellido</div>
+                 </div>
+
+                 <div class="mb-3">
+                    <label for="name" class="form-label">Número de telefono</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="EJ: +58 4120999132" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">Introduzca su número telefónico</div>
+                 </div>
+                
+                 <div class="mb-3">
+                    <label for="name" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="EJ: JRSistemas@gmail.com" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">Introduzca una dirección de correo electrónico válida</div>
+                 </div>
+
+                 <div class="mb-3">
+                    <label for="name" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" name="direction" id="direction" placeholder="EJ: San Rafael, Paramito">
+                    <div class="invalid-feedback">Introduzca su direción</div>
+                 </div>
+
+                 <div class="mb-3">
+                    <label for="servicio" class="form-label"> Servicios disponibles: </label>
+                    <select id="servicio" name="servicio" class="form-select" required>
+                        <option selected value="Instalación de cámaras">Instalación de cámaras</option>
+                        <option value="Mantenimiento de hardware">Mantenimiento de hardware</option>
+                        <option value="Mantenimiento de software">Mantenimiento de software</option>
+                        <option value="Revisión completa de equipo">Revisión completa de equipo</option>
+                    </select>
+                </ul>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">Seleccione un servicio</div>
+                 </div>
+    
+                 <div class="mb-3">
+                    <label for="exposicion" class="form-label">Exposición del asunto</label>
+                    <textarea name="message" class="form-control" id="" rows="10" ></textarea>
+                    <div class="invalid-feedback">Exponga el caso</div>
+                 </div>
+                 <button class="btn btn-primary" type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
+<br><br><br>
+
+{% endblock %}

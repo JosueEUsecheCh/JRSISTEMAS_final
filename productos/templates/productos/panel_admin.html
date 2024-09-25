@@ -1,0 +1,233 @@
+{% extends "bases/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+    }
+    .sidebar {
+        position: fixed;
+        z-index: 1;
+        width: 250px; 
+        height: 60vh;
+        background: #f8f9fa;
+        padding: 15px;
+        overflow-y: auto; /* Desplazamiento si el contenido excede la altura */
+        flex-shrink: 0; 
+        position: sticky; 
+    }
+    .content {
+        overflow-y: 4rem;
+        display: block;
+        margin-left: 250px;
+        flex-shrink: 0; 
+        position: sticky;
+        margin-top: -30rem;
+        margin-bottom: 20rem;
+    }
+    .accordion {
+        cursor: pointer;
+        padding: 10px;
+        text-align: left;
+        background-color: #e7e7e7;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s;
+        display: block; 
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .options-panel button{
+        cursor: pointer;
+        padding: 10px;
+        text-align: left;
+        background-color: #e7e7e7;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s;
+        display: block; 
+        width: 100%; 
+        margin-bottom: 5px;
+    }
+    .accordion.active, .accordion:hover {
+        background-color: #4f6d7a;
+        color: white;
+        transition: 0.5s;
+    }
+    .options-panel button:hover{
+        background-color: #4f6d7a;
+        color: white;
+        transition: 0.5s;
+    }
+    .panel {
+        padding: 0 15px;
+        display: none;
+        overflow: hidden;
+    }
+</style>
+
+<aside class="sidebar">
+  <h5>Inventario</h5>
+  
+  <button class="accordion">Audio y Video</button>
+  <div class="panel">
+    <ul>
+      <li><a href="{% url 'panel' %}?selected_categories=audio_all">Mostrar Todos</a></li>
+      {% for categoria in categorias_audio_video %}
+        <li><a class="dropdown-item" href="#" data-categoria="audio_{{ categoria.id }}">{{ categoria.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <button class="accordion">Equipos</button>
+  <div class="panel">
+    <ul>
+      <li><a href="{% url 'panel' %}?selected_categories=equipo_all">Mostrar Todos</a></li>
+      {% for categoria in categorias_equipos %}
+        <li><a class="dropdown-item" href="#" data-categoria="equipo_{{ categoria.id }}">{{ categoria.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <button class="accordion">Componentes</button>
+  <div class="panel">
+    <ul>
+      <li><a href="{% url 'panel' %}?selected_categories=componente_all">Mostrar Todos</a></li>
+      {% for categoria in categorias_componentes %}
+        <li><a class="dropdown-item" href="#" data-categoria="componente_{{ categoria.id }}">{{ categoria.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <button class="accordion">Redes</button>
+  <div class="panel">
+    <ul>
+      <li><a href="{% url 'panel' %}?selected_categories=redes_all">Mostrar Todos</a></li>
+      {% for categoria in categorias_redes %}
+        <li><a class="dropdown-item" href="#" data-categoria="redes_{{ categoria.id }}">{{ categoria.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <ul class="options-panel">
+    <h5>Opciones adicionales</h5>
+            <a href="{% url 'register' %}"><button>Registro de productos</button></a>
+            <a href="{% url 'reports' %}"><button>Generar pdf de productos</button></a>
+            <a href="{% url 'listar_recibos' %}"><button>Ver Recibos pendientes</button></a>
+            <a href="{% url 'vendidos' %}"><button>Generar pdf de vendidos</button></a>
+
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'asignations' %}"><button>Administración de usuarios</button></a>
+                {% endif %}
+            {% endif %}
+    </ul>
+</aside>
+
+<div class="content">
+      <div class="table-wrapper">
+        <h1>Tabla de productos</h1>
+        {% if page_obj %}
+          <h2>Productos de: {{ categoria_seleccionada }}</h2>
+          <table class="fl-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio de venta</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in page_obj %}
+              <tr>
+                <td>
+                  <div class="img-product">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                  </div>
+                </td>
+                <td>{{ item.name | capfirst }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                  <div class="box">
+                    <a class="button" href="#popup{{ item.id }}">
+                      <box-icon name='trash'></box-icon>
+                    </a>
+                  </div>
+                  <div class="overlay" id="popup{{ item.id }}">
+                    <div class="popup">
+                      <h2>Producto</h2>
+                      <div class="content">
+                        ¿Seguro que desea eliminar el producto?
+                        <br><br>
+                        <a href="#"><button>Cancelar</button></a>
+                        <form action="{% url 'eliminar' item.id %}" method="POST">
+                          {% csrf_token %}
+                          <button type="submit">Eliminar</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box1">
+                    <a class="button" href="{% url 'actualizar' item.prefix item.id %}">
+                      <box-icon type='solid' name='edit'></box-icon>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>No hay productos registrados de esta categoría.</p>
+        {% endif %}
+      </div>
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&selected_categories={{ request.GET.selected_categories|urlencode }}">&laquo; primero</a>
+            <a href="?page={{ page_obj.previous_page_number }}&selected_categories={{ request.GET.selected_categories|urlencode }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&selected_categories={{ request.GET.selected_categories|urlencode }}">siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&selected_categories={{ request.GET.selected_categories|urlencode }}">último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+
+
+<script>
+document.querySelectorAll('.accordion').forEach(accordion => {
+    accordion.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const panel = this.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+});
+
+// Manejar clics en las opciones del accordion de categorías
+document.querySelectorAll('.dropdown-item[data-categoria]').forEach(item => {
+    item.addEventListener('click', function(event) {
+        event.preventDefault();
+        const categoriaSeleccionada = this.dataset.categoria;
+        
+        // Redirigir a la URL con la categoría seleccionada
+        window.location.href = "{% url 'panel' %}?selected_categories=" + categoriaSeleccionada;
+    });
+});
+</script>
+
+{% endblock %}
